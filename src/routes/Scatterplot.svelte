@@ -5,6 +5,7 @@
     export let data;
     export let x;
     export let y;
+    export let color;
 
     let svg;
     let width = 500;
@@ -25,7 +26,7 @@
       .range([height-40, 40])
       .nice();
     $: colorScale = scaleOrdinal()
-        .domain([...new Set(data.map(d => data.label))].sort())
+        .domain([...new Set(Object.values(color))].sort())
         .range(schemeCategory10);
     $: xTicks = xScale.ticks();
     $: yTicks = yScale.ticks();
@@ -52,8 +53,8 @@
         {/each}
     </g>
 
-    {#each data as item}
-        <circle cx={xScale(item[x])} cy={yScale(item[y])} r="5" fill="{colorScale(item['label'])}"/>
+    {#each data as item, index}
+        <circle cx={xScale(item[x])} cy={yScale(item[y])} r="5" fill="{colorScale(color[index.toString()])}"/>
     {/each}
 </svg>
 

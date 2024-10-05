@@ -9,6 +9,7 @@ X = iris.data
 clustering = AgglomerativeClustering().fit(X)
 labels = clustering.labels_
 
-result = {'label': clustering.labels_}
-
-print('hello world', result)
+results = {
+    'data': X,
+    'labels': clustering.labels_
+}
