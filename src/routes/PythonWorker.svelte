@@ -1,12 +1,16 @@
 <script>
     import { onDestroy, onMount } from "svelte";
+    import { n_clusters, metric, requestComputation, linkage } from "./stores";
 
     export let script;
-    export let result;
+    export let parameters = {};
+    export let resultPromise;
 
     let worker;
-    let id;
+    let id = 0;
     let callbacks = {};
+
+    $: $requestComputation && runCode();
 
     async function initWorker() {
         if (window.Worker) {
@@ -18,7 +22,7 @@
                 const onSuccess = callbacks[id];
                 delete callbacks[id];
                 onSuccess(data);
-                result = data.results;
+                resultPromise = data.results;
             };
         }
     }
@@ -43,14 +47,26 @@
 
     onMount(async () => {
         initWorker();
-        if (script) {
-            result = runPythonAsync(script);
-        }
+        runCode();
     });
 
     onDestroy(() => {
         terminateWorker();
     });
+
+    function runCode() {
+        if (script) {
+            const parametersLocal = {
+                n_clusters: $n_clusters,
+                metric: $metric,
+                linkage: $linkage
+            }
+            parameters = parametersLocal;
+            resultPromise = runPythonAsync(script, parametersLocal);
+        }
+    }
 </script>
 
-<button class="button">Run code</button>
+<div class="block">
+    {JSON.stringify(parameters, null, 2)}
+</div>

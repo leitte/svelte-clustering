@@ -1,6 +1,7 @@
 <script>
     import { scaleLinear, scaleOrdinal } from 'd3-scale'; 
     import { schemeCategory10 } from 'd3-scale-chromatic';
+    import { onMount } from 'svelte';
 
     export let data;
     export let x;
@@ -8,8 +9,8 @@
     export let color;
 
     let svg;
-    let width = 500;
-    let height = 500;
+    let width = 400;
+    let height = 400;
     const padding = { top: 20, right: 15, bottom: 20, left: 25 };
 
     //const colorScale = scaleOrdinal([0, 1], schemeCategory10);
@@ -30,9 +31,16 @@
         .range(schemeCategory10);
     $: xTicks = xScale.ticks();
     $: yTicks = yScale.ticks();
+
+    onMount(resize);
+
+    function resize() {
+        ({ width, height } = svg.getBoundingClientRect());
+        console.log("size", width, height)
+    }
 </script>
 
-<svg bind:this={svg} width={width} height={height}>
+<svg bind:this={svg}>
     <!-- x axis -->
     <g class="axis x-axis">
         {#each xTicks as tick}
@@ -65,6 +73,8 @@
 <style>
     svg {
         background-color: whitesmoke;
+        width: 100%;
+        height: 400px;
     }
 
     .tick line {
