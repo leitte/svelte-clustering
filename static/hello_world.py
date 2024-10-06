@@ -19,8 +19,8 @@ try:
 except Exception:
     print('Could not create clustering')
 
-print('finished clustering')
-#print('children', clustering.distances_)
+print('finished clustering', X.shape)
+print('children', clustering.children_)
 results = {
     'data': X,
     'labels': clustering.labels_,
