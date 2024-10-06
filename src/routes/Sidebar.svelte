@@ -9,8 +9,8 @@
 
 </script>
 
-<aside class="sidebar">
-    <p class="menu-label">Clustering</p>
+<aside>
+    <p class="menu-label mb-2">Clustering</p>
     <!-- Number of cluster -->
     <div class="field">
         <label class="label is-small">Number of clusters</label>
@@ -44,7 +44,11 @@
         </div>
     </div>
 
-    <p class="menu-label">Scatterplot</p>
+    <p class="menu-label mb-2">Scatterplot</p>
     <button class="button is-primary is-small is-fullwidth" on:click={() => requestComputation.update((n) => (n + 1) % Number.MAX_SAFE_INTEGER)}>Update clustering</button>
     <slot />
 </aside>
+
+<style>
+
+</style>

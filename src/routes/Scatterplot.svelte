@@ -11,7 +11,7 @@
     let svg;
     let width = 400;
     let height = 400;
-    const padding = { top: 20, right: 15, bottom: 20, left: 25 };
+    const padding = { top: 20, right: 15, bottom: 25, left: 35 };
 
     //const colorScale = scaleOrdinal([0, 1], schemeCategory10);
 
@@ -46,7 +46,7 @@
         {#each xTicks as tick}
             <g class="tick tick-{tick}" transform="translate({xScale(tick)},{height})">
                 <line y1="-{height}" y2="-{padding.bottom}" x1="0" x2="0" />
-                <text y="-2">{tick}</text>
+                <text y="-5">{tick}</text>
             </g>
         {/each}
     </g>

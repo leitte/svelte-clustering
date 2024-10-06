@@ -1,25 +1,46 @@
+<!-- 
+- Layout template for dashboard:
+https://codepen.io/guamacherox/pen/RJWVdN
+- padding and margin need to be set using
+different notation
+https://bulma.io/documentation/helpers/spacing-helpers/
+-->
+
 <script>
     import Sidebar from "./Sidebar.svelte";
 
     export let data;
 </script>
 
-<!-- <div class="hero is-fullheight">
-    <div class="hero-body"> -->
-        <div class="columns is-fullwidth">
-            <!-- Sidebar -->
-            <div class="column is-one-quarter has-background-light">
-                <div class="block">
-                    <Sidebar script="print(5)"/>
-                </div>
-            </div>
-    
-            <!-- Main area -->
-            <div class="column">
-                <div class="block">
-                    <slot />
-                </div>
+<div class="section is-paddingless">
+    <div class="columns">
+        <!-- Header -->
+        <div class="column">
+            <div class="header">
+                <h1 class="Title">Hello World</h1>
             </div>
         </div>
-<!--     </div>
-</div> -->
+    </div>
+</div>
+<div class="section p-0">
+    <div class="columns m-0">
+        <!-- Sidebar -->
+        <div class="column is-one-quarter">
+            <Sidebar script="print(5)"/>
+        </div>
+
+        <!-- Main area -->
+        <div class="column">
+            <div class="block">
+                <slot />
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .is-paddingless-2 {
+        
+    }
+</style>
+
