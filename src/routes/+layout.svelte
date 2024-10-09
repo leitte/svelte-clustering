@@ -12,7 +12,7 @@ https://bulma.io/documentation/helpers/spacing-helpers/
     export let data;
 </script>
 
-<div class="section is-paddingless">
+<div class="section is-paddingless has-background-light">
     <div class="columns">
         <!-- Header -->
         <div class="column">
