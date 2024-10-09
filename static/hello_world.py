@@ -20,7 +20,7 @@ except Exception:
     print('Could not create clustering')
 
 print('finished clustering', X.shape)
-print('children', clustering.children_)
+print('children', clustering.distances_)
 results = {
     'data': X,
     'labels': clustering.labels_,

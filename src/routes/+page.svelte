@@ -18,7 +18,7 @@
     let pythonResultPromise;
 </script>
 
-<section class="section">
+<section class="section p-0">
     {#await pythonResultPromise}
         Waiting for computation results.
     {:then results} 
